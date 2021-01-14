@@ -1,5 +1,13 @@
-from typing import List, Dict
+from typing import List, Dict, Union
 from pydantic import BaseModel, Field
+
+
+class SvmSpecs(BaseModel):
+    kernel: str
+
+
+class RandomForestSpecs(BaseModel):
+    numberEstimators: int
 
 
 class ClassObject(BaseModel):
@@ -16,7 +24,7 @@ class InputspaceClass(BaseModel):
 class ModelObject(BaseModel):
     text: str
     value: str
-    specs: Dict
+    specs: Union[SvmSpecs, RandomForestSpecs]
 
 
 class TrainSpecObject(BaseModel):

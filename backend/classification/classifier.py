@@ -1,1 +1,0 @@
-SOME_CONST = 7

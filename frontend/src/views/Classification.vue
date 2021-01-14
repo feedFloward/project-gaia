@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-container fluid>
-      <v-row>
+      <v-row style="border-bottom: 2px solid black">
         <v-col>
           <classDefinition :classes="classes"></classDefinition>
         </v-col>
@@ -20,6 +20,7 @@
         </v-col>
         <v-col>
           <v-btn @click="train" color="green white--text">train!</v-btn>
+          <trainingSpecification/>
         </v-col>
       </v-row>
     </v-container>
@@ -35,9 +36,12 @@ import classDefinition from "@/components/classification/class-definition";
 import classifierSelection from "@/components/classification/classifier-selection";
 import svmOptions from "@/components/classification/svm-options";
 import randomForestOptions from "@/components/classification/random-forest-options";
+import TrainingSpecification from "@/components/classification/training-specification";
 import { mapState } from 'vuex';
 import { api } from '@/shared';
 import axios from 'axios';
+import trainingSpecification from '../components/classification/training-specification.vue';
+import { log } from '@tensorflow/tfjs';
 export default {
   name: "Classification",
   components: {
@@ -46,6 +50,7 @@ export default {
     classifierSelection,
     svmOptions,
     randomForestOptions,
+    trainingSpecification
   },
   data() {
     return {
@@ -54,7 +59,6 @@ export default {
   },
 methods: {
   async train() {
-    //wie zeichnen?
     const answer = await api.trainRequest(this.classes, this.inputspace, this.selectedClassifier, this.trainingSpecs)
     console.log(answer)
     // this.$store.state.clfResponse = answer

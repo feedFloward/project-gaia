@@ -2,8 +2,8 @@
   <div>
     <v-slider
     v-model="specs"
-    min="1"
-    max="200"
+    :min=lowerBoundEstimators
+    :max=upperBoundEstimators
     label="number of estimators"
     thumb-label="always"
     :thumb-size="24"
@@ -14,29 +14,30 @@
 
 
 <script lang="ts">
+import { log } from '@tensorflow/tfjs';
 import Vue from 'vue';
 import { randomForestMethods, randomForestComputed } from "../../store/helpers"; // ts config oder so anpassen damit @/store.. funktioniert
 export default Vue.extend({
   name: "randomForestOptions",
   data() {
     return {
-
     }
   },
   methods: {
     ...randomForestMethods,
   },
-
   computed: {
-    // das so nochmal überdenken, WENN MÖGLICH IN HELPERS AUSLAGERN!!!!
     ...randomForestComputed,
     
     specs: {
+      //
       get(): number {
         return this.getNumEstimatorsTree;
       },
       set(numEstimators: number) {
-        this.rfChooseNumEst(numEstimators);
+        if (isNaN(numEstimators) == false) {
+          this.rfChooseNumEst(numEstimators);
+        }        
       }
     },
   }

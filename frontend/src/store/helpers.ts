@@ -18,6 +18,10 @@ export const randomForestMethods = {
 }
 
 export const randomForestComputed = {
+    ...mapState({
+        lowerBoundEstimators: (state) => (state as ClfState).modelSpecData.randomForestSpecs.lowerBoundEstimators,
+        upperBoundEstimators: (state) => (state as ClfState).modelSpecData.randomForestSpecs.upperBoundEstimators
+    }),
     ...mapGetters([
         'getNumEstimatorsTree'
     ])
@@ -41,7 +45,7 @@ export const classifierSelectionComputed = {
     })
 }
 
-export const classDefinitionComputed = {
+export const trainingSpecsComputed = {
     ...mapActions([
         'setTrainTestSplit'
     ])

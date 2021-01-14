@@ -1,5 +1,3 @@
-//all specs in snake case for python backend
-
 const classifiers = [
     {
         text: 'logistic regression',
@@ -32,10 +30,16 @@ const svmSpecs = {
     kernel: ['rbf', 'linear']
 }
 
+const randomForestSpecs = {
+    lowerBoundEstimators: 1,
+    upperBoundEstimators: 100
+}
+
 // random forest obere und untere grenze für num_estimators hier definieren!
 
 const modelSpecData = {
-    svmSpecs
+    svmSpecs,
+    randomForestSpecs
 }
 
 const trainingSpecs = {

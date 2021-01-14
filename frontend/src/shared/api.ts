@@ -31,6 +31,6 @@ const trainRequest = async function(data: classObject[], inputspace: Record<stri
     return response.data
 };
 
-export const data = {
+export const api = {
     trainRequest,
 };

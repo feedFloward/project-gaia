@@ -14,12 +14,20 @@ interface TrainingSpecs {
     test_size: number
 }
 
+// intefaces für die Bereitstellung der Model-Optionen (NICHT die selectierten für das Modell, sondern für die Optionen)
+
 interface SvmSpecs {
     kernel: string[]
 }
 
-interface ModelSpecs {
-    svmSpecs: SvmSpecs
+interface RandomForestSpecs {
+    lowerBoundEstimators: number,
+    upperBoundEstimators: number
+}
+
+interface ModelSpecData {
+    svmSpecs: SvmSpecs,
+    randomForestSpecs: RandomForestSpecs
 }
 
 // type
@@ -30,7 +38,7 @@ export interface ClfState {
     classifiers: clfObject[],
     selectedClassifier: clfObject | undefined,
     inputspace : Object,
-    modelSpecData: ModelSpecs,
+    modelSpecData: ModelSpecData,
     clfResponse: ClfResponse,
     trainingSpecs: TrainingSpecs
 }
